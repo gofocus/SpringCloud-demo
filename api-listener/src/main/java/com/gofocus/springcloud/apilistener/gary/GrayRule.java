@@ -8,6 +8,7 @@ import com.netflix.niws.loadbalancer.DiscoveryEnabledServer;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * @Author: GoFocus
@@ -28,6 +29,7 @@ public class GrayRule extends AbstractLoadBalancerRule {
 
     private Server choose(ILoadBalancer iLoadBalancer, Object key) {
         //获取用户的 metadata
+        // TODO ThreadLocal 为什么一直为空？
         Map<String, String> map = RibbonParameters.get();
         String version = "";
         if (map != null && map.containsKey("version")) {
@@ -42,13 +44,15 @@ public class GrayRule extends AbstractLoadBalancerRule {
             Map<String, String> metadata = ((DiscoveryEnabledServer) server).getInstanceInfo().getMetadata();
 
             //与灰度规则做匹配
-            String metaVersion = metadata.get("version");
-            if (metaVersion.trim().equals(version)) {
-                return server;
+            if (metadata.containsKey("version")) {
+                String metaVersion = metadata.get("version");
+                if (metaVersion.trim().equals(version)) {
+                    return server;
+                }
             }
 
         }
 
-        return null;
+        return allServers.get(new Random().nextInt(allServers.size()));
     }
 }

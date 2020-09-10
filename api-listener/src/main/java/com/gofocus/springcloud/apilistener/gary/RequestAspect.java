@@ -21,11 +21,11 @@ import java.util.Map;
 public class RequestAspect {
 
     @Pointcut("execution(* com.gofocus.springcloud.apilistener.controller..*Controller*.*(..))")
-    private void anyMehtod(){
+    private void anyMethod(){
 
     }
 
-    @Before(value = "anyMehtod()")
+    @Before(value = "anyMethod()")
     public void before(JoinPoint joinPoint){
 
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
