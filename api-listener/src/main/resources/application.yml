@@ -1,0 +1,30 @@
+
+spring:
+  application:
+    name: service-api-listener
+eureka:
+  client:
+    service-url :
+      defaultZone: http://peer1:8001/eureka/,http://peer2:8002/eureka/,http://peer3:8003/eureka/
+    registry-fetch-interval-seconds: 10
+  instance:
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 15
+
+feign:
+  hystrix:
+    enabled: true
+
+---
+spring:
+  profiles: api-listener1
+
+server:
+  port: 8881
+
+---
+spring:
+  profiles: api-listener2
+
+server:
+  port: 8882

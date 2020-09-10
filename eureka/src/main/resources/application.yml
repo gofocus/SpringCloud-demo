@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: spring-cloud-eureka
+server:
+  port: 8001
+
+eureka:
+  instance:
+    hostname: peer1
+  server:
+    use-read-only-response-cache: false
+#    response-cache-update-interval-ms: 3000
+    eviction-interval-timer-in-ms: 10000
+    enable-self-preservation: false
+#    renewal-percent-threshold: 0.85
+#    number-of-replication-retries: 10
+
+---
+spring:
+  profiles: peer1
+server:
+  port: 8001
+eureka:
+  instance:
+    hostname: peer1
+  client:
+    serviceUrl:
+      defaultZone: http://peer2:8002/eureka/,http://peer3:8003/eureka/
+---
+spring:
+  profiles: peer2
+server:
+  port: 8002
+eureka:
+  instance:
+    hostname: peer2
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8001/eureka/,http://peer3:8003/eureka/
+---
+spring:
+  profiles: peer3
+server:
+  port: 8003
+eureka:
+  instance:
+    hostname: peer3
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8001/eureka/,http://peer2:8002/eureka/
+

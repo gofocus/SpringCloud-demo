@@ -1,0 +1,40 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer1:8001/eureka/
+
+server:
+  port: 800
+
+spring:
+  application:
+    name: zuulServer
+
+
+zuul:
+  #表示忽略下面的值向微服务传播，如果为空表示所有请求头都透传到后面微服务。
+  sensitive-headers: token
+  prefix: /api
+  strip-prefix: true #实际访问时是否移除前缀
+  routes:
+    service-api-listener: /zuul-api-listener/**
+
+service-api-listener:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+# Actuator
+management:
+  endpoint:
+    routes:
+      enabled: true
+    health:
+      # 默认是 never
+      show-details: always
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+

@@ -1,0 +1,24 @@
+eureka:
+  client:
+    registry-fetch-interval-seconds: 10
+    service-url:
+      defaultZone: http://peer1:8001/eureka/,http://peer2:8002/eureka/,http://peer3:8003/eureka/
+  instance:
+    lease-expiration-duration-in-seconds: 15
+    lease-renewal-interval-in-seconds: 5
+server:
+  port: 9101
+spring:
+  application:
+    name: service-producer
+
+---
+spring:
+  profiles: service-producer1
+server:
+  port: 9101
+---
+spring:
+  profiles: service-producer2
+server:
+  port: 9102
