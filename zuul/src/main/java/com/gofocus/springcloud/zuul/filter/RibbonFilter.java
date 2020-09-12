@@ -7,10 +7,6 @@ import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
 
 /**
  * @Author: GoFocus
@@ -31,7 +27,8 @@ public class RibbonFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
-        return true;
+        //如果被限流，过滤器就不执行了
+        return !(Boolean) RequestContext.getCurrentContext().get("limit");
     }
 
     @Override
