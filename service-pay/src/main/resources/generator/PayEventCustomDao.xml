@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gofocus.springcloud.servicepay.dao.PayEventCustomDao">
+    <resultMap id="BaseResultMap" type="com.gofocus.springcloud.servicepay.generate.PayEvent">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="order_type" jdbcType="VARCHAR" property="orderType"/>
+        <result column="process" jdbcType="VARCHAR" property="process"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, order_type, `process`, content, create_time, update_time
+    </sql>
+
+    <insert id="insertWithId" keyColumn="id" keyProperty="id"
+            parameterType="com.gofocus.springcloud.servicepay.generate.PayEvent">
+        insert into pay_event (id, order_type, `process`, content,
+                               create_time, update_time)
+        values (#{id}, #{orderType,jdbcType=VARCHAR}, #{process,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},
+                #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+
+</mapper>

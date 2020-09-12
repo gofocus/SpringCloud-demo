@@ -1,4 +1,4 @@
-package generate;
+package com.gofocus.springcloud.servicepay.generate;
 
 import java.io.Serializable;
 import java.util.Date;

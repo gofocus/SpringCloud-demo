@@ -1,7 +1,8 @@
-package generate;
+package com.gofocus.springcloud.servicepay.generate;
 
-import generate.PayEvent;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface PayEventDao {
     int deleteByPrimaryKey(Integer id);
 
