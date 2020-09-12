@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/api-listener/api-listener.iml" filepath="$PROJECT_DIR$/api-listener/api-listener.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka/eureka.iml" filepath="$PROJECT_DIR$/eureka/eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service-order/service-order.iml" filepath="$PROJECT_DIR$/service-order/service-order.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service-pay/service-pay.iml" filepath="$PROJECT_DIR$/service-pay/service-pay.iml" />
       <module fileurl="file://$PROJECT_DIR$/service-producer-demo/service-producer-demo.iml" filepath="$PROJECT_DIR$/service-producer-demo/service-producer-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/zuul/zuul.iml" filepath="$PROJECT_DIR$/zuul/zuul.iml" />
     </modules>

@@ -10,18 +10,28 @@ eureka:
 server:
   port: 800
 
+test:
+  eve: ahahhahhhahahah
+
 spring:
   application:
     name: zuulServer
 
 
 zuul:
-  #表示忽略下面的值向微服务传播，如果为空表示所有请求头都透传到后面微服务。
-  sensitive-headers: token
-  prefix: /api
-  strip-prefix: true #实际访问时是否移除前缀
   routes:
     service-api-listener: /zuul-api-listener/**
+    custom-service-name1:
+      path: /zuul-api-driver/**
+      url: http://localhost:8881
+    custom-service-name2:
+      path: /a-foward/**
+      url: forward:/myController
+
+  #指定请求头中的哪些字段是敏感的，敏感字段是不会向网关后面的微服务传播的，如果为空表示所有请求头都透传到后面微服务。
+  sensitive-headers: token
+#  prefix: /api
+  strip-prefix: true #实际访问时是否移除前缀
 
 service-api-listener:
   ribbon:

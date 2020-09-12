@@ -7,14 +7,18 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="zuul" />
-        <module name="service-producer-demo" />
         <module name="api-listener" />
+        <module name="service-order" />
+        <module name="service-producer-demo" />
         <module name="eureka" />
+        <module name="service-pay" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="api-listener" target="1.8" />
       <module name="eureka" target="1.8" />
+      <module name="service-order" target="1.8" />
+      <module name="service-pay" target="1.8" />
       <module name="service-producer-demo" target="1.8" />
       <module name="zuul" target="1.8" />
     </bytecodeTargetLevel>
@@ -23,6 +27,8 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api-listener" options="-parameters" />
       <module name="eureka" options="-parameters" />
+      <module name="service-order" options="-parameters" />
+      <module name="service-pay" options="-parameters" />
       <module name="service-producer-demo" options="-parameters" />
       <module name="zuul" options="-parameters" />
     </option>

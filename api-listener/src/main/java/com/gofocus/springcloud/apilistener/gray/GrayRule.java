@@ -1,4 +1,4 @@
-package com.gofocus.springcloud.apilistener.gary;
+package com.gofocus.springcloud.apilistener.gray;
 
 import com.netflix.client.config.IClientConfig;
 import com.netflix.loadbalancer.AbstractLoadBalancerRule;
@@ -13,7 +13,7 @@ import java.util.Random;
 /**
  * @Author: GoFocus
  * @Date: 2020-09-09 17:18
- * @Description: 定义灰度规则
+ * @Description: 手动实现灰度发布时的自定义负载均衡策略，如果使用 jmnarloch 则不需要。
  */
 
 public class GrayRule extends AbstractLoadBalancerRule {
@@ -29,7 +29,7 @@ public class GrayRule extends AbstractLoadBalancerRule {
 
     private Server choose(ILoadBalancer iLoadBalancer, Object key) {
         //获取用户的 metadata
-        // TODO ThreadLocal 为什么一直为空？
+        // TODO 为什么用 Feign 进行服务调用时 ThreadLocal 一直为空？ 用 RestTemplate 没问题
         Map<String, String> map = RibbonParameters.get();
         String version = "";
         if (map != null && map.containsKey("version")) {
@@ -50,7 +50,6 @@ public class GrayRule extends AbstractLoadBalancerRule {
                     return server;
                 }
             }
-
         }
 
         return allServers.get(new Random().nextInt(allServers.size()));

@@ -5,6 +5,12 @@ server:
   port: 8001
 
 eureka:
+  client:
+    # 单节点的 Eureka
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://localhost:${server.port}/eureka/
   instance:
     hostname: peer1
   server:
